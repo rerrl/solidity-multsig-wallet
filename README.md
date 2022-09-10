@@ -1,8 +1,12 @@
-# Sample Hardhat Project
+# Multisig Wallet
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+This project is an ethereum x of y multisig wallet (defined at contract construction).
+There is also a suite of tests ensuring this contract performs as originally intended.
 
-Try running some of the following tasks:
+TODO:
+simplify tests on a functional basis as tests are overlapping and some are more complex.
+(example, remove "CORE", and add another section that does basic checks per function)
+Then add core tests that assume modifiers to be working.
 
 ```shell
 npx hardhat help
