@@ -83,10 +83,20 @@ contract MultisigWallet {
       }
     }
 
+    function removeTransaction(uint256 index) private {
+        if (index >= pendingTransactions.length) return;
+        for (uint256 i = index; i < pendingTransactions.length-1; i++){
+            pendingTransactions[i] = pendingTransactions[i+1];
+        }
+        pendingTransactions.pop();
+        delete transactionId_to_transaction[index];
+    }
+
     function processTransaction(uint256 _txn_id) private {
       Transaction storage txn = transactionId_to_transaction[_txn_id];
       console.log("%s: sending %s to %s", _txn_id, txn.amount_wei, txn.to);
       payable(txn.to).transfer(txn.amount_wei);
+      removeTransaction(_txn_id);
     }
 
     receive() external payable {}
